@@ -1,41 +1,3 @@
-/* Mapping Formula
-    ROW COL to POS
-    return 7-(r*3) + c;
-    
-    FINDING ROW:
-    return (((n - 1) ~/ 3) - 2).abs();
-    FINDING COL:
-    return (n-1) % 3;
-*/
-
-/* CHECKER LOGIC
-
-
-    String checker(List<List<String>> board) {
-    // Check rows and columns in one loop
-    for (int i = 0; i < 3; i++) {
-        // Check Row i
-        if (board[i][0] != ' ' && board[i][0] == board[i][1] && board[i][0] == board[i][2]) {
-        return board[i][0] == 'X' ? 'human' : 'computer';
-        }
-        // Check Column i
-        if (board[0][i] != ' ' && board[0][i] == board[1][i] && board[0][i] == board[2][i]) {
-        return board[0][i] == 'X' ? 'human' : 'computer';
-        }
-    }
-
-    // Check Diagonals
-    if (board[1][1] != ' ') { // Optimization: center must be filled for any diagonal win
-        if ((board[0][0] == board[1][1] && board[1][1] == board[2][2]) ||
-            (board[0][2] == board[1][1] && board[1][1] == board[2][0])) {
-        return board[1][1] == 'X' ? 'human' : 'computer';
-        }
-    }
-
-    return board.any((row) => row.contains(' ')) ? 'draw' : 'noone';
-    }
-*/
-
 import 'dart:io';
 
 class Board {
@@ -54,20 +16,16 @@ class Board {
   }
 
   String checker() {
-    // Check rows and columns in one loop
     for (int i = 0; i < 3; i++) {
-        // Check Row i
         if (board[i][0] != ' ' && board[i][0] == board[i][1] && board[i][0] == board[i][2]) {
           return board[i][0] == 'X' ? 'human' : 'computer';
         }
-        // Check Column i
         if (board[0][i] != ' ' && board[0][i] == board[1][i] && board[0][i] == board[2][i]) {
           return board[0][i] == 'X' ? 'human' : 'computer';
         }
     }
 
-    // Check Diagonals
-    if (board[1][1] != ' ') { // Optimization: center must be filled for any diagonal win
+    if (board[1][1] != ' ') {
         if ((board[0][0] == board[1][1] && board[1][1] == board[2][2]) ||
             (board[0][2] == board[1][1] && board[1][1] == board[2][0])) {
         return board[1][1] == 'X' ? 'human' : 'computer';
@@ -76,8 +34,6 @@ class Board {
 
     return board.any((row) => row.contains(' ')) ? 'noone' : 'draw';
   }
-
-
 
   bool validMove(int n){
     int row = (((n - 1) ~/ 3) - 2).abs();
@@ -139,9 +95,6 @@ class AIPlayer extends Player {
       }
     }
 
-    // print('this is board created');
-    // b.printBoard();
-
     List<int> solve(Board b, Player AI, Player Human, Player currentPlayer, int r, int c){
       if(b.checker() == 'noone'){
         List<List<int>> res = [];
@@ -162,9 +115,6 @@ class AIPlayer extends Player {
           }
         }
 
-        // print("i am res");
-        // print(res);
-        // print('res ended');
         List<int> optimalPosition = [-1, -1, -1000];
         if(currentPlayer == AI){
           for(int i = 0; i < res.length; i++){

@@ -43,7 +43,7 @@ The search tree explores every potential game state, making the AI's decision-ma
 
 ## 🛠️ Project Structure
 
-- `bin/tic_tac_toe_minmax.dart`: Contains the game loop, board state, and Minimax logic.
+- `bin/tic_tac_toe_minmax_oop.dart`: Contains the game loop, board state, and Minimax logic.
 - `pubspec.yaml`: Project metadata and dependencies.
 - `analysis_options.yaml`: Static analysis rules for clean Dart code.
 
